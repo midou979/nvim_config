@@ -1,31 +1,42 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
-
 Plug 'davidhalter/jedi-vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-jedi'
-Plug 'vim-airline/vim-airline'
 Plug 'jiangmiao/auto-pairs'
 Plug 'scrooloose/nerdcommenter'
 Plug 'sbdchd/neoformat'
-Plug 'davidhalter/jedi-vim'
 Plug 'scrooloose/nerdtree'
 Plug 'morhetz/gruvbox'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'neomake/neomake'
+Plug 'dense-analysis/ale'
+Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'heavenshell/vim-pydocstring', { 'do': 'make install' }
+Plug 'turbio/bracey.vim'
 
 call plug#end()
 colorscheme gruvbox
 
+set colorcolumn=80
+
 "deoplete configuration"
 let g:deoplete#enable_at_startup = 1
+call deoplete#custom#option('auto_complete_delay', 200)
+
+"jedi autocompletion
+let g:jedi#completions_enabled = 0
 
 "deoplete-jedi configuration"
 "make sure that the preview window disappear after auto-completion is done"
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
-:set colorcolumn=72
+let g:airline_powerline_fonts = 1
+let g:coc_git_status = 1
 
-let g:NERDTreeIndicatorMapCustom = {
+let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ "Modified"  : "✹",
     \ "Staged"    : "✚",
     \ "Untracked" : "✭",
@@ -64,6 +75,9 @@ map <C-n> :NERDTreeToggle<CR>
 let g:neomake_python_enabled_makers = ['pylint']
 
 nnoremap <buffer> <F9> :exec '!python3' shellescape(@%, 1)<cr>
+
+"Pydocstring mapping"
+map <C-p> :Pydocstring<CR>
 
 set tabstop=4
 set softtabstop=4
