@@ -16,6 +16,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'heavenshell/vim-pydocstring', { 'do': 'make install' }
 Plug 'turbio/bracey.vim'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+
 
 call plug#end()
 colorscheme gruvbox
